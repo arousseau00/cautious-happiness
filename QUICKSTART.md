@@ -54,7 +54,7 @@ python -m http.server 8080
 .\Create-WingetSource.ps1 -Action Add -SourceName "MyCompany" -SourceUrl "https://yourusername.github.io/repositoryname"
 
 # Or manually:
-winget source add --name "MyCompany" --arg "https://yourusername.github.io/repositoryname"
+winget source add --name "MyCompany" --arg "https://arousseau00.github.io/cautious-happiness/CustomWingetSource"
 ```
 
 ## Step 5: Test Your Source
