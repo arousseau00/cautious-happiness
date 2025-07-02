@@ -1,0 +1,20 @@
+{
+  "name": "winget-rest-source",
+  "version": "1.0.0",
+  "description": "GitHub-hosted winget REST source",
+  "scripts": {
+    "build": "echo 'Building static REST API...'",
+    "deploy": "echo 'Deploying to GitHub Pages...'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yourusername/winget-rest-source.git"
+  },
+  "keywords": [
+    "winget",
+    "package-manager",
+    "rest-api"
+  ],
+  "author": "Your Name",
+  "license": "MIT"
+} 

@@ -1,0 +1,21 @@
+{
+  "packages": [
+    {
+      "id": "MyCompany.MyApp",
+      "versions": [
+        {
+          "version": "1.0.0",
+          "manifests": {
+            "defaultLocale": "en-US",
+            "installer": {
+              "architecture": "x64",
+              "installerType": "exe",
+              "installerUrl": "https://mycompany.com/downloads/MyApp-1.0.0-x64.exe",
+              "installerSha256": "1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef"
+            }
+          }
+        }
+      ]
+    }
+  ]
+} 
