@@ -1,0 +1,18 @@
+{
+  "Information": {
+    "SourceAgreements": {
+      "Agreement": "https://mycompany.com/agreement",
+      "AgreementUrl": "https://mycompany.com/agreement"
+    },
+    "SourceAgreementsIdentifier": "MyCompanyAgreement",
+    "Documentation": "https://mycompany.com/docs",
+    "Icon": "https://mycompany.com/icon.png",
+    "License": "MIT",
+    "LicenseUrl": "https://opensource.org/licenses/MIT",
+    "Privacy": "https://mycompany.com/privacy",
+    "Publisher": "MyCompany",
+    "PublisherUrl": "https://mycompany.com",
+    "Support": "https://mycompany.com/support",
+    "SupportUrl": "https://mycompany.com/support"
+  }
+} 

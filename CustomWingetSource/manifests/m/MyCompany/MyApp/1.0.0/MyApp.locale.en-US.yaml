@@ -1,0 +1,18 @@
+PackageLocale: en-US
+Publisher: MyCompany
+PublisherUrl: https://mycompany.com
+PublisherSupportUrl: https://mycompany.com/support
+PrivacyUrl: https://mycompany.com/privacy
+Author: MyCompany
+PackageName: MyApp
+PackageUrl: https://mycompany.com/myapp
+License: MIT
+LicenseUrl: https://opensource.org/licenses/MIT
+Copyright: Copyright (c) 2024 MyCompany
+CopyrightUrl: https://mycompany.com
+ShortDescription: A sample application
+Description: This is a sample application for demonstrating winget source creation.
+Tags:
+  - sample
+  - demo
+Moniker: myapp 
