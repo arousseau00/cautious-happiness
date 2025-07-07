@@ -1,0 +1,28 @@
+name: Update Authorized Packages List
+
+on:
+  workflow_dispatch:
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Get this repository
+        uses: actions/checkout@v4
+      
+      - name: Get winget-pkgs repository
+        uses: actions/checkout@v4
+        with:
+          repository: 'microsoft/winget-pkgs'
+          path: 'winget-pkgs'
+
+      - name: Run PowerShell script
+        shell: pwsh
+        run: |
+          $params = @{
+            IdListPath = './OnlineList/AuthorizedPackages.json'
+            SearchPath = './winget-pkgs/manifests'
+            OutputPath = './Output/AuthorizedPackages.yaml'
+          }
+          . ./OnlineList/Scripts/UpdateAuthorizedPackages.ps1 @params
