@@ -32,13 +32,13 @@ jobs:
     needs: [checkout-repository, checkout-winget-pkgs]
 
     steps:
-      - run: gci ./winget-pkgs
+      - run: gci winget-pkgs
         shell: pwsh
-      - run: gci ./winget-pkgs/manifests
+      - run: gci winget-pkgs/manifests
         shell: pwsh
-      - run: gci ./winget-pkgs/manifests/m
+      - run: gci winget-pkgs/manifests/m
         shell: pwsh
-      - run: gci ./winget-pkgs/manifests/m/Mozilla
+      - run: gci winget-pkgs/manifests/m/Mozilla
         shell: pwsh
 
       - name: Run PowerShell script
