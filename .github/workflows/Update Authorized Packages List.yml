@@ -11,12 +11,16 @@ jobs:
       - name: Get this repository
         uses: actions/checkout@v4
 
+      - name: Set cache date
+        id: set_date
+        run: echo "CACHE_DATE=$(date +%F)" >> $GITHUB_OUTPUT
+
       - name: Daily cache
         id: cache
         uses: actions/cache@v4
         with:
           path: winget-pkgs
-          key: winget-pkgs-static
+          key: winget-pkgs-${{ steps.set_date.outputs.CACHE_DATE }}
           
       - name: Get winget-pkgs repository
         if: ${{ !steps.cache.outputs.cache-hit }}
@@ -29,9 +33,9 @@ jobs:
         shell: pwsh
       - run: gci winget-pkgs/manifests
         shell: pwsh
-      - run: gci winget-pkgs/manifests/m
+      - run: gci winget-pkgs/manifests/M
         shell: pwsh
-      - run: gci winget-pkgs/manifests/m/Mozilla
+      - run: gci winget-pkgs/manifests/M/Mozilla
         shell: pwsh
 
       - name: Run PowerShell script
