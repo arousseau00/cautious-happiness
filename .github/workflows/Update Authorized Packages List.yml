@@ -29,15 +29,6 @@ jobs:
           repository: 'microsoft/winget-pkgs'
           path: 'winget-pkgs'
 
-      - run: gci winget-pkgs
-        shell: pwsh
-      - run: gci winget-pkgs/manifests
-        shell: pwsh
-      - run: gci winget-pkgs/manifests/M
-        shell: pwsh
-      - run: gci winget-pkgs/manifests/M/Mozilla
-        shell: pwsh
-
       - name: Run PowerShell script
         shell: pwsh
         run: |

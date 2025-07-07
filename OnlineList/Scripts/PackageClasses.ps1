@@ -62,7 +62,7 @@ class PackageObject {
 
     # Method(s) for PackageObject class
     hidden [void]SetPackagePath([System.String]$manifestsRoot) {
-        $this.Path = Join-Path $manifestsRoot ($this.Id.Substring(0, 1)) ($this.Id.Split('.'))
+        $this.Path = Join-Path $manifestsRoot ($this.Id.Substring(0, 1).ToLower()) ($this.Id.Split('.'))
     }
 
     hidden [void]SetVersions() {
