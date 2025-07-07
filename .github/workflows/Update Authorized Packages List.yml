@@ -4,17 +4,13 @@ on:
   workflow_dispatch:
 
 jobs:
-  checkout-repository:
+  flow:
     runs-on: ubuntu-latest
 
     steps:
       - name: Get this repository
         uses: actions/checkout@v4
-      
-  checkout-winget-pkgs:
-    runs-on: ubuntu-latest
 
-    steps:
       - name: Daily cache
         uses: actions/cache@v4
         with:
@@ -27,11 +23,6 @@ jobs:
           repository: 'microsoft/winget-pkgs'
           path: 'winget-pkgs'
 
-  update-authorized-packages:
-    runs-on: ubuntu-latest
-    needs: [checkout-repository, checkout-winget-pkgs]
-
-    steps:
       - run: gci winget-pkgs
         shell: pwsh
       - run: gci winget-pkgs/manifests
