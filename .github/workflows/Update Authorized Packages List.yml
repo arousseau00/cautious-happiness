@@ -17,15 +17,11 @@ jobs:
           repository: 'microsoft/winget-pkgs'
           path: 'winget-pkgs'
 
-      - name: test
-        shell: pwsh
-        run: gci
-
       - name: Run PowerShell script
         shell: pwsh
         run: |
           $params = @{
-            IdListPath = './OnlineList/AuthorizedPackages.json'
+            IdListPath = './OnlineList/AuthorizedPackagesId.json'
             SearchPath = './winget-pkgs/manifests'
             OutputPath = './Output/AuthorizedPackages.yaml'
           }
