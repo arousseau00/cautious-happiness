@@ -17,6 +17,10 @@ jobs:
           repository: 'microsoft/winget-pkgs'
           path: 'winget-pkgs'
 
+      - name: test
+        shell: pwsh
+        run: gci
+
       - name: Run PowerShell script
         shell: pwsh
         run: |
