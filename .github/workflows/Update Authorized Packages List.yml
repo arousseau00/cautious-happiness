@@ -4,18 +4,44 @@ on:
   workflow_dispatch:
 
 jobs:
-  refresh:
+  checkout-repository:
     runs-on: ubuntu-latest
 
     steps:
       - name: Get this repository
         uses: actions/checkout@v4
+        with:
+          path: 'Repository'
       
+  checkout-winget-pkgs:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Daily cache
+        uses: actions/cache@v4
+        with:
+          path: winget-pkgs
+          key: winget-pkgs-static
+
       - name: Get winget-pkgs repository
         uses: actions/checkout@v4
         with:
           repository: 'microsoft/winget-pkgs'
           path: 'winget-pkgs'
+
+  update-authorized-packages:
+    runs-on: ubuntu-latest
+    needs: [checkout-repository, checkout-winget-pkgs]
+
+    steps:
+      - run: gci ./winget-pkgs
+        shell: pwsh
+      - run: gci ./winget-pkgs/manifests
+        shell: pwsh
+      - run: gci ./winget-pkgs/manifests/m
+        shell: pwsh
+      - run: gci ./winget-pkgs/manifests/m/Mozilla
+        shell: pwsh
 
       - name: Run PowerShell script
         shell: pwsh
