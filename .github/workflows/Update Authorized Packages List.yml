@@ -10,8 +10,6 @@ jobs:
     steps:
       - name: Get this repository
         uses: actions/checkout@v4
-        with:
-          path: 'Repository'
       
   checkout-winget-pkgs:
     runs-on: ubuntu-latest
