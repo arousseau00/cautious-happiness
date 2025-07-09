@@ -80,8 +80,8 @@ class PackageObject {
 
     hidden [void]SetPackageInformations() {
         $latestDefaultLocaleManifest = Get-Content $this.LatestVersionObject.DefaultLocale.ManifestPath -Raw
-        $this.DisplayName = [regex]::Matches($latestDefaultLocaleManifest, 'PackageName:\s*(.+)').Groups[1].Value
-        $this.Publisher = [regex]::Matches($latestDefaultLocaleManifest, 'Publisher:\s*(.+)').Groups[1].Value
+        $this.DisplayName = [regex]::Matches($latestDefaultLocaleManifest, 'PackageName:\s*(.+)').Groups[1].Value.Trim()
+        $this.Publisher = [regex]::Matches($latestDefaultLocaleManifest, 'Publisher:\s*(.+)').Groups[1].Value.Trim()
         $this.LatestVersion = $this.LatestVersionObject.Version
 
     }
