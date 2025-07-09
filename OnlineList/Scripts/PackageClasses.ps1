@@ -47,8 +47,9 @@ class PackageObject {
     [System.String]$Id
     [System.String]$DisplayName
     [System.String]$Publisher
-    [PackageVersion]$LatestVersion
-    [System.Collections.ObjectModel.Collection[PackageVersion]]$Versions
+    [System.String]$LatestVersion
+    [PackageVersion]$LatestVersionObject
+    [System.Collections.ObjectModel.Collection[PackageVersion]]$VersionObjects
     [System.String]$Path
 
     # Constructor(s) for PackageObject class
@@ -69,23 +70,24 @@ class PackageObject {
         Get-ChildItem -Path $this.Path -Recurse -Depth 1 -Filter "$($this.Id).yaml" | ForEach-Object {
             $version = $_.Directory.BaseName
             $manifestPath = $_.FullName
-            $this.Versions += [PackageVersion]::new($version, $manifestPath, $isLatest)
+            $this.VersionObjects += [PackageVersion]::new($version, $manifestPath, $isLatest)
         }
     }
 
     hidden [void]SetLatestVersion() {
-        $this.LatestVersion = ($this.Versions | Sort-Object -Property 'Version' -Descending | Select-Object -First 1)
+        $this.LatestVersionObject = ($this.VersionObjects | Sort-Object -Property 'Version' -Descending | Select-Object -First 1)
     }
 
     hidden [void]SetPackageInformations() {
-        $latestDefaultLocaleManifest = Get-Content $this.LatestVersion.DefaultLocale.ManifestPath -Raw
+        $latestDefaultLocaleManifest = Get-Content $this.LatestVersionObject.DefaultLocale.ManifestPath -Raw
         $this.DisplayName = [regex]::Matches($latestDefaultLocaleManifest, 'PackageName:\s*(.+)').Groups[1].Value
         $this.Publisher = [regex]::Matches($latestDefaultLocaleManifest, 'Publisher:\s*(.+)').Groups[1].Value
-    }
+        $this.LatestVersion = $this.LatestVersionObject.Version
 
+    }
 
     [PackageVersion]GetVersion([System.String]$version) {
-        return $this.Versions | Where-Object { $_.Version -eq $version } | Select-Object -First 1
+        return $this.VersionObjects | Where-Object { $_.Version -eq $version } | Select-Object -First 1
     }
-    
+
 }

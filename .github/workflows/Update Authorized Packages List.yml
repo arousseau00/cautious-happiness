@@ -29,12 +29,22 @@ jobs:
           repository: 'microsoft/winget-pkgs'
           path: 'winget-pkgs'
 
-      - name: Run PowerShell script
+      - name: Create output directory
+        shell: pwsh
+        run: New-Item -Path './Output/' -ItemType 'Directory' -Force
+
+      - name: Run update script
         shell: pwsh
         run: |
           $params = @{
             IdListPath = './OnlineList/AuthorizedPackagesId.json'
             SearchPath = './winget-pkgs/manifests'
-            OutputPath = './Output/AuthorizedPackages.yaml'
+            OutputPath = './Output/'
           }
           . ./OnlineList/Scripts/UpdateAuthorizedPackages.ps1 @params
+
+      - name: Upload output
+        uses: actions/upload-artifact@v4
+        with:
+          name: AuthorizedPackagesInfo
+          path: './Output/AuthorizedPackagesInfo.json'

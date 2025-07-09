@@ -47,7 +47,12 @@ param (
 )
 
 . "$PSScriptRoot\PackageClasses.ps1"
-# Load the list of authorized package IDs
+
+if (Test-Path -Path $OutputPath -PathType 'Container') {
+    $OutputPath = Join-Path -Path $OutputPath -ChildPath 'AuthorizedPackagesInfo.json'
+}
+
 Get-Content -Path $IdListPath | ConvertFrom-Json | ForEach-Object {
     [PackageObject]::new($_, $SearchPath)
-}
+} | Select-Object -Property 'Id', 'DisplayName', 'Publisher', 'LatestVersion' |
+    ConvertTo-Json -Compress | Out-File -FilePath $OutputPath -Encoding 'UTF8' -Force
